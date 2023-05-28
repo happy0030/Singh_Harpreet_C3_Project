@@ -64,4 +64,8 @@ public class Restaurant {
     public String getLocation() {
         return location;
     }
+
+    public int getCostOfSelectedItems(List<String> selectedItems){
+        return 0;
+    }
 }

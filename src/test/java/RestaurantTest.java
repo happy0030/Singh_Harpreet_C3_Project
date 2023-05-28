@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,4 +61,20 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>COST OF SELECTED ITEMS<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void selecting_items_and_get_cost_should_display_proper_cost(){
+        List<String> selectedItems = new ArrayList<>();
+
+        selectedItems.add("Sweet corn soup");  //select only sweet corn soup
+        assertEquals(119,restaurant.getCostOfSelectedItems(selectedItems)); // total cost of sweet corn soup = 119
+
+        selectedItems.add("Vegetable lasagne"); //add vegetable lasagne also to the selection
+        assertEquals(388,restaurant.getCostOfSelectedItems(selectedItems)); // total cost of sweet corn soup + vegetable lasagne = 119 + 269 = 388
+
+        selectedItems.remove("Sweet corn soup"); //removing sweet corn soup from the selection
+        assertEquals(269,restaurant.getCostOfSelectedItems(selectedItems)); // total cost of vegetable lasagne = 269
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<COST OF SELECTED ITEMS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
